@@ -110,5 +110,10 @@
 <script src="firebase-config.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
-</body>
+  <script type="module">
+    import { db } from "./firebase-config.js";
+
+    console.log("Firebase connected successfully!");
+  </script>
+</body> 
 </html>
