@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sidahmed Car</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="neon-logo" aria-label="Sidahmed Car">
+      <span class="nl-word">SIDAHMED</span><span class="nl-car">CAR</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#vehicules">Véhicules</a>
+      <a href="#contact" id="navContact" hidden>Contact</a>
+      <a class="nav-phone" id="navPhone" href="#" hidden></a>
+    </nav>
+    <a class="phone-pill" id="headerPhone" href="#" hidden></a>
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="top" class="hero">
+  <div class="hero-media" id="heroMedia"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Concession automobile</p>
+    <h1 class="hero-title">Trouvez<br>votre <span class="accent">voiture</span></h1>
+    <p class="hero-sub">Parcourez nos marques, recherchez un modèle et filtrez par année, carburant ou prix.</p>
+    <div class="hero-actions">
+      <a href="#vehicules" class="btn btn-primary">Voir les véhicules</a>
+      <a href="#" class="btn btn-ghost" id="heroCall" hidden>Appeler</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE (brands, filled by JS) ===== -->
+<div class="marquee" id="marquee" aria-hidden="true" hidden>
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ===== SEARCH + FILTERS ===== -->
+<section id="vehicules" class="toolbar">
+  <div class="search-row">
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Rechercher une marque, un modèle, une année…" autocomplete="off">
+    </label>
+    <button class="btn btn-ghost filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filterPanel">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      Filtres <span class="badge" id="filterCount" hidden>0</span>
+    </button>
+  </div>
+
+  <div class="filter-panel" id="filterPanel" hidden>
+    <label>Marque<select class="select" id="fSection"></select></label>
+    <label>Année<select class="select" id="fYear"></select></label>
+    <label>Carburant<select class="select" id="fFuel"></select></label>
+    <label>Boîte<select class="select" id="fTrans"></select></label>
+    <label>Prix max (DA)<input class="input" id="fPrice" type="number" inputmode="numeric" min="0" placeholder="Ex : 8000000"></label>
+    <label>Kilométrage max<input class="input" id="fKm" type="number" inputmode="numeric" min="0" placeholder="Ex : 50000"></label>
+    <button class="btn btn-ghost" id="resetBtn" type="button">Réinitialiser</button>
+  </div>
+
+  <div class="section-chips" id="sectionChips"></div>
+  <p class="result-count" id="resultCount"></p>
+</section>
+
+<!-- ===== CARS BY SECTION ===== -->
+<main id="carList"></main>
+
+<!-- ===== CONTACT (shown only if filled in admin) ===== -->
+<section id="contact" class="contact" hidden>
+  <div class="contact-text">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title">Une question ?<br>Un essai ?</h2>
+    <p class="contact-address" id="contactAddress"></p>
+    <div class="contact-actions">
+      <a class="btn btn-primary btn-lg" id="contactPhone" href="#" hidden></a>
+      <a class="btn btn-ghost btn-lg" id="contactWa" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a>
+    </div>
+  </div>
+  <div class="contact-map" id="contactMap" hidden></div>
+</section>
+
+<footer class="site-footer">
+  <span class="neon-logo small"><span class="nl-word">SIDAHMED</span><span class="nl-car">CAR</span></span>
+  <p>© <span id="year"></span> Sidahmed Car</p>
+</footer>
+
+<!-- ===== CAR DETAIL OVERLAY (same page, no reload) ===== -->
+<div class="car-overlay" id="carOverlay" aria-hidden="true">
+  <div class="overlay-scroll">
+    <button class="overlay-close" id="overlayClose" aria-label="Fermer">&times;</button>
+    <div class="overlay-content" id="overlayContent"></div>
+  </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
